@@ -18,6 +18,7 @@ func init() {
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*.tmpl")
+    r.Static("/static", "./static")
     routes(r)
 	r.Run(":" + os.Getenv("PORT"))
 }
