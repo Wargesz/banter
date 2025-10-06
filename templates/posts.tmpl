@@ -1,0 +1,38 @@
+{{ define "templates/posts.tmpl" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/posts.css">
+        <title>yapr. - Posts</title>
+    </head>
+    <body>
+        <div id="posts">
+            {{ range $p := .posts }}
+            <div id="post-container">
+                <img src="{{ $p.Profile }}" alt="profile picture" id="profile-picture">
+                <div id="post-details">
+                    <div id="post-title">
+                    {{ $p.Title }}
+                    </div>
+                    <span>
+                        {{ $p.Content }}
+                    </span>
+                    <div id="reactions">
+                    😀 12 😎 4 😍 6
+                    </div>
+                    <div id="timestamp">
+                        Thu., 07-03-2021
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+            <div id="post-adder">
+                <button id="post-add">+</button>
+            </div>
+        </div>
+    </body>
+</html>
+{{ end }}
+
