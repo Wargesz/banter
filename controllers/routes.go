@@ -55,7 +55,7 @@ func LoginUser(c *gin.Context) {
 		"sub": user.ID,
 		"exp": time.Now().Add(time.Hour * 24 * 7).Unix(),
 	})
-	tokenString, err := token.SignedString(os.Getenv("SECRET"))
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "templates/login.tmpl", gin.H{
 			"errorMessage": "failed to create cookie",
