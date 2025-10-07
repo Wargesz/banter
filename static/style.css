@@ -67,6 +67,15 @@ body {
     cursor: pointer;
 }
 
+#signup-redirect {
+    font-size: 0.8em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
 #error-message {
     position: absolute;
     top: 0;
