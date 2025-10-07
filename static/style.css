@@ -14,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .login-container div#title {
@@ -64,4 +65,26 @@ body {
 .login-container input[type=submit]:hover {
     color: white;
     cursor: pointer;
+}
+
+#error-message {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    margin: 1.5em;
+    padding: 0.5em;
+    border-radius: 0.4em;
+    background-color: #3C4142;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 0;
+    animation: slide 0.5s forwards;
+    animation-delay: 0;
+}
+
+@-webkit-keyframes slide {
+    100% { right: 0; }
+}
+
+@keyframes slide {
+    100% { right: 0; }
 }
