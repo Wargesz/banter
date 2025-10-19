@@ -39,7 +39,7 @@ func SignUpUser(c *gin.Context) {
 		return
 	}
 	user := models.User{Username: username, Password: string(hash),
-		ProfilePicture: "static/picture.png"}
+		ProfilePicture: "static/users/default.png"}
 	result := initialisers.DB.Create(&user)
 	if result.Error != nil {
 		c.HTML(http.StatusBadRequest, "templates/signup.tmpl", gin.H{
@@ -49,7 +49,7 @@ func SignUpUser(c *gin.Context) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"sub": user.ID,
+		"sub": user.Username,
 		"exp": time.Now().Add(time.Hour * 24 * 7).Unix(),
 	})
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
