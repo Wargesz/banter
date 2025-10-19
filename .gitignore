@@ -1,3 +1,4 @@
 .env
 banter.db
 *.swp
+dist/
