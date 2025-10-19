@@ -99,6 +99,10 @@ img {
     vertical-align: top;
 }
 
+img#profile-picture:hover {
+    cursor: pointer;
+}
+
 span {
     width: 40vh;
     display: block;

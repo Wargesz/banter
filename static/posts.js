@@ -4,7 +4,7 @@ function setup() {
 	document.querySelector('#edit-post').hidden = true;
 	if (document.querySelectorAll('#post-container').length === 0) {
 		document.querySelector('#new-post').hidden = false;
-        document.querySelector('#new-post').style.visibility = 'visible';
+		document.querySelector('#new-post').style.visibility = 'visible';
 		document.querySelector('#post-adder').hidden = true;
 		document.querySelector('#new-post-title').focus();
 		document.querySelector('#new-post-title').value = '';
@@ -50,6 +50,18 @@ function registerListeners() {
 					document.querySelector('.edit-post-content').value = content;
 					document.querySelector('#edit-post').hidden = false;
 					document.querySelector('#edit-post').style.visibility = 'visible';
+				}
+			}
+		});
+	}
+
+	for (const element of document.querySelectorAll('img#profile-picture')) {
+		element.addEventListener('click', e => {
+			const attribs = e.target.getAttribute('class').split(' ');
+			for (const a of attribs) {
+				if (a.startsWith('user-')) {
+					const username = a.split('-')[1];
+                    window.location.replace(`/profile?username=${username}`)
 				}
 			}
 		});

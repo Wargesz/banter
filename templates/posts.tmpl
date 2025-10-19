@@ -12,7 +12,8 @@
             {{ $u := .user }}
             {{ range $p := .posts }}
             <div id="post-container">
-                <img src="{{ $p.User.ProfilePicture }}" alt="profile picture" id="profile-picture">
+                <img src="{{ $p.User.ProfilePicture }}" class="user-{{
+$p.User.Username  }}" alt="profile picture" id="profile-picture">
                 {{ if eq $p.UserID $u.ID }}
                     <button id="tool-buttons" class="delete id-{{ $p.ID }}">Delete</button>
                     <button id="tool-buttons" class="edit id-{{ $p.ID }}">Edit</button>
