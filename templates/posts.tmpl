@@ -5,33 +5,59 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/posts.css">
-        <title>yapr. - Posts</title>
+        <title>banter. - Posts</title>
     </head>
     <body>
         <div id="posts">
+            {{ $u := .user }}
             {{ range $p := .posts }}
             <div id="post-container">
-                <img src="{{ $p.Profile }}" alt="profile picture" id="profile-picture">
+                <img src="{{ $p.User.ProfilePicture }}" alt="profile picture" id="profile-picture">
+                {{ if eq $p.UserID $u.ID }}
+                    <button id="tool-buttons" class="delete id-{{ $p.ID }}">Delete</button>
+                    <button id="tool-buttons" class="edit id-{{ $p.ID }}">Edit</button>
+                {{ end }}
                 <div id="post-details">
                     <div id="post-title">
-                    {{ $p.Title }}
+                        {{ $p.Title }}
                     </div>
-                    <span>
+                    <span class="id-{{ $p.ID }}">
                         {{ $p.Content }}
                     </span>
-                    <div id="reactions">
-                    😀 12 😎 4 😍 6
+                    <div id="votes">
+                        <div id="upvote" class="id-{{ $p.ID }}">
+                            <button id="upvote">{{ $p.Upvotes }}</button>
+                        </div>
+                        <div id="downvote" class="id-{{ $p.ID }}">
+                             <button id="downvote">{{ $p.Downvotes }}</button>
+                        </div>
                     </div>
                     <div id="timestamp">
-                        Thu., 07-03-2021
+                        {{ $p.UpdatedAt | formatAsDate }}
                     </div>
                 </div>
             </div>
             {{ end }}
             <div id="post-adder">
-                <button id="post-add">+</button>
+                <button id="post-add"><img src="static/plus.svg" alt="new post"></button>
             </div>
         </div>
+        <div id="new-post">
+            <form method="POST">
+            <input id="new-post-title" required name="title" type="text" placeholder="New Post Title">
+            <textarea id="new-post-content" required name="content" placeholder="My cool post..." rows="4" cols="30"></textarea>
+            <input type="submit" id="new-post-button" value="Post">
+            </form>
+            <button id="new-post-cancel">Cancel</button>
+        </div>
+        <div id="edit-post">
+            <form action="javascript:void(0)">
+            <textarea id="new-post-content" class="edit-post-content" required name="content" placeholder="My cool post..." rows="4" cols="30"></textarea>
+            </form> 
+            <input type="submit" id="edit-post-button" value="Done">
+            <button id="edit-post-cancel">Cancel</button>
+        </div>
+        <script src="static/posts.js"></script>
     </body>
 </html>
 {{ end }}

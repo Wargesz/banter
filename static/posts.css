@@ -3,16 +3,17 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Poppins, Helvetica, serif;
 }
 
 body {
-    font-family: Poppins, Helvetica, serif;
     background-color: #121314;
     color: #3DAC78;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: 100vh;
 }
 
 #posts {
@@ -25,6 +26,12 @@ body {
     border-radius: 8em;
     border: 0.1em solid #3DAC78;
     margin: 0;
+}
+
+
+#tool-buttons, div#tools {
+    margin: 0;
+    padding: 0;
 }
 
 #post-container {
@@ -48,8 +55,37 @@ body {
     margin-left: 2em;
 }
 
-#reactions {
+#votes *, #votes {
     display: inline;
+}
+
+#votes button {
+    margin: 0.4em;
+    padding: 0.4em;
+    border: thin solid #222324;
+    background-color: #222324;
+    color: #3DAC78;
+    border-radius: 0.4em;
+}
+
+button#upvote::before {
+    width: 0.2em;
+    height: 0.2em;
+}
+
+button#downvote::before {
+    width: 0.2em;
+    height: 0.2em;
+}
+
+#votes button:hover {
+    border: thin solid #3DAC78;
+    cursor: pointer;
+}
+
+#votes button#selected {
+    color: #222324;
+    background-color: #3DAC78;
 }
 
 #timestamp {
@@ -73,21 +109,76 @@ span {
     word-wrap: break-word;
 }
 
+div#new-post, div#edit-post {
+    visibility: hidden;
+}
+
 #post-adder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%
+}
+
+#post-adder * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    color: #3DAC78;
+    background-color: #222324;
 }
 
 #post-add {
-    color: #3DAC78;
-    background-color: #3C4142;
-    border: none;
-    font-size: 2em;
-    margin: 0.3em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #post-add:hover {
-    color: #222324;
+    cursor: pointer;
 }
 
+#new-post, #edit-post {
+    background-color: #222324;
+    padding: 0.4em;
+    border-radius: 0.4em;
+    position: absolute;
+    margin: 0 auto;
+}
+
+#new-post-title, #new-post-content {
+    border: none;
+    border-radius: 0.4em;
+    background-color: #3C4142;
+    padding: 0.4em;
+    font-size: 0.8em;
+    color: white;
+}
+
+#new-post-title {
+    border-radius: 0;
+    display: block;
+    background-color: #222324;
+    width: 40%;
+    border-bottom: 0.2em solid #3DAC78;
+    padding-bottom: 0;
+    margin-bottom: 0.4em;
+}
+
+#new-post-content {
+    display: block;
+}
+
+#new-post-button, #new-post-cancel, #tool-buttons, #edit-post-cancel, #edit-post-button {
+    float: right;
+    margin: 0.6em;
+    padding: 0 0.4em 0 0.4em;
+    color: white;
+    background-color: #3DAC78;
+    border-radius: 0.4em;
+    border: thin solid #3DAC78;
+}
+
+#new-post-button:hover, #new-post-cancel:hover, #tool-buttons:hover, #edit-post-cancel:hover, #edit-post-button:hover {
+    border: thin solid white;
+    cursor: pointer;
+}
