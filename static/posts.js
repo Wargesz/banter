@@ -9,6 +9,7 @@ function setup() {
 		document.querySelector('#new-post-title').focus();
 		document.querySelector('#new-post-title').value = '';
 		document.querySelector('#new-post-content').value = '';
+		document.querySelector('#new-post-cancel').hidden = true;
 	} else {
 		document.querySelector('#new-post').hidden = true;
 		document.querySelector('#post-adder').hidden = false;
@@ -16,6 +17,7 @@ function setup() {
 }
 
 document.querySelector('button#post-add').addEventListener('click', () => {
+	document.querySelector('#new-post-cancel').hidden = true;
 	document.querySelector('div#new-post').hidden = false;
 	document.querySelector('div#new-post').style.visibility = 'visible';
 	document.querySelector('#new-post-title').focus();
@@ -61,7 +63,7 @@ function registerListeners() {
 			for (const a of attribs) {
 				if (a.startsWith('user-')) {
 					const username = a.split('-')[1];
-                    window.location.replace(`/profile?username=${username}`)
+					globalThis.location.replace(`/profile?username=${username}`);
 				}
 			}
 		});
@@ -99,12 +101,8 @@ async function sendEdit() {
 }
 
 async function sendRemove(postId) {
-	fetch('/remove', {
-		method: 'POST',
-		body: JSON.stringify({id: Number.parseInt(postId)}),
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	fetch(`/remove/${postId}`, {
+		method: 'DELETE',
 	}).then(res => res.text()).then(text => {
 		if (JSON.parse(text).redirect == '/') {
 			location.reload();
