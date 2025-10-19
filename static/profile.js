@@ -19,18 +19,15 @@ document.querySelector('button.delete-profile').addEventListener('click', async 
 	message.style.animation = '';
 	setTimeout(() => {
 		globalThis.location.href = '/';
-	}, 1500);
+	}, 1200);
 });
 
-document.querySelector('button.update-picture').addEventListener('click', async () => {
+document.querySelector('button.update-picture').addEventListener('click', () => {
 	document.querySelector('input.picture').click();
 });
 
-document.querySelector('input.picture').addEventListener('change', async () => {
-	async () => {
-		document.querySelector('input.submit-picture').click();
-	};
-	globalThis.location.reload();
+document.querySelector('input.picture').addEventListener('change', () => {
+	document.querySelector('input.submit-picture').click();
 });
 
 checkStatus();
