@@ -25,6 +25,7 @@ func main() {
 	})
 	r.LoadHTMLGlob("templates/*.tmpl")
 	r.Static("/static", "./static")
+    r.StaticFile("favicon.ico","static/favicon.ico")
 	routes(r)
 	r.Run(":" + os.Getenv("PORT"))
 }
@@ -32,14 +33,20 @@ func main() {
 func routes(r *gin.Engine) {
 	r.GET("/", middleware.Auth, controllers.Posts)
 	r.POST("/", middleware.Auth, controllers.AddPost)
+
 	r.GET("/login", controllers.LoginPage)
 	r.POST("/login", controllers.LoginUser)
+
 	r.GET("/signup", controllers.SignUpPage)
 	r.POST("/signup", controllers.SignUpUser)
-    r.DELETE("/remove/:id", middleware.Auth, controllers.RemovePost)
+
+	r.DELETE("/remove/:id", middleware.Auth, controllers.RemovePost)
+
 	r.POST("/edit", middleware.Auth, controllers.EditPost)
-    r.GET("/profile", middleware.Auth, controllers.Profile)
-    r.DELETE("/profile", middleware.Auth, controllers.RemoveAccount)
+
+	r.GET("/profile", middleware.Auth, controllers.Profile)
+	r.DELETE("/profile", middleware.Auth, controllers.RemoveAccount)
+	r.POST("/profile", middleware.Auth, controllers.ChangePicture)
 }
 
 func formatAsDate(t time.Time) string {
