@@ -17,7 +17,7 @@ function setup() {
 
 document.querySelector('button#post-add').addEventListener('click', () => {
 	document.querySelector('div#new-post').hidden = false;
-	document.querySelector('div#new-post').style.visibility = 'visibile';
+	document.querySelector('div#new-post').style.visibility = 'visible';
 	document.querySelector('#new-post-title').focus();
 	document.querySelector('#posts').opacity = 0.6;
 });

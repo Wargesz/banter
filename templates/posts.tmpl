@@ -25,14 +25,6 @@ $p.User.Username  }}" alt="profile picture" id="profile-picture">
                     <span class="id-{{ $p.ID }}">
                         {{ $p.Content }}
                     </span>
-                    <div id="votes">
-                        <div id="upvote" class="id-{{ $p.ID }}">
-                            <button id="upvote">{{ $p.Upvotes }}</button>
-                        </div>
-                        <div id="downvote" class="id-{{ $p.ID }}">
-                             <button id="downvote">{{ $p.Downvotes }}</button>
-                        </div>
-                    </div>
                     <div id="timestamp">
                         {{ $p.UpdatedAt | formatAsDate }}
                     </div>
