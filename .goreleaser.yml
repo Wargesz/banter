@@ -9,7 +9,7 @@ before:
 builds:
   - id: banter
     binary: banter
-    dir: ./cmd/banter
+    dir: .
     ldflags:
       - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
     env:
@@ -39,7 +39,7 @@ builds:
 
   - id: banter-win
     binary: banter
-    dir: ./cmd/banter
+    dir: .
     ldflags:
       - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
     env:
@@ -48,17 +48,16 @@ builds:
       - windows
     goarch:
       - amd64
-      - arm64
     hooks:
       post:
         - upx -9 "{{ .Path }}"
 
 archives:
   - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    format: tar.xz
+    formats: [ 'tar.xz' ]
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [ 'zip' ]
     wrap_in_directory: true
     files:
       - LICENSE
