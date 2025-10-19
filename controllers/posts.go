@@ -68,27 +68,35 @@ func EditPost(c *gin.Context) {
 	}
 	result := initialisers.DB.Model(&models.Post{}).
 		Where("id = ?", editedPost.Id).Update("content", editedPost.Content)
-    if result.Error != nil {
+	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"reason": result.Error,
 		})
 		return
-    }
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"redirect": "/",
 	})
 }
 
 func RemovePost(c *gin.Context) {
-	var postId PostID
-	err := c.ShouldBindJSON(&postId)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-	result := initialisers.DB.Delete(&models.Post{}, postId.Id)
+	user, _ := c.Get("user")
+	postId := c.Param("id")
+    var post models.Post
+    result := initialisers.DB.Where("id == ?", postId).First(&post)
+    if result.Error != nil {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "reason": "no post",
+        })
+        return
+    }
+    if post.UserID != user.(models.User).ID {
+        c.JSON(http.StatusUnauthorized, gin.H{
+            "reason": "cannot delete other user posts",
+        })
+        return
+    }
+    result = initialisers.DB.Where("id == ?", postId).Delete(&models.Post{}) 
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": result.Error,

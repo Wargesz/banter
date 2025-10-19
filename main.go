@@ -36,8 +36,10 @@ func routes(r *gin.Engine) {
 	r.POST("/login", controllers.LoginUser)
 	r.GET("/signup", controllers.SignUpPage)
 	r.POST("/signup", controllers.SignUpUser)
-	r.POST("/remove", middleware.Auth, controllers.RemovePost)
+    r.DELETE("/remove/:id", middleware.Auth, controllers.RemovePost)
 	r.POST("/edit", middleware.Auth, controllers.EditPost)
+    r.GET("/profile", middleware.Auth, controllers.Profile)
+    r.DELETE("/profile", middleware.Auth, controllers.RemoveAccount)
 }
 
 func formatAsDate(t time.Time) string {
