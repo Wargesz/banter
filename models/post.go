@@ -1,13 +1,13 @@
 package models
 
 import (
-    "gorm.io/gorm"
+	"gorm.io/gorm"
 )
 
 type Post struct {
-    gorm.Model
-    Title string
-    Content string
-    User User
-    UserID uint
+	gorm.Model
+	Title   string
+	Content string
+	User    User
+	UserID  uint
 }
