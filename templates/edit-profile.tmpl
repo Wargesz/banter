@@ -1,0 +1,44 @@
+{{ define "templates/edit-profile.tmpl" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="static/profile.css">
+        <title>banter. - Profile</title>
+    </head>
+    <body>
+        <fieldset>
+            <legend><b>{{ .user.Username }}</b></legend>
+            <div class="headline">
+                <img src="{{ .user.ProfilePicture}}" alt="profile-picture">
+                <div class="options">
+                    Options:
+                    <div id="buttons">
+                        <button class="update-picture">Change picture</button>
+                        <button class="delete-profile">Delete account</button>
+                    </div>
+                </div>
+            </div>
+            <div class="posts">
+                Posts: <span>{{ .postCount }}</span>
+            </div>
+            <div class="register-date">
+                Registered on: <span>{{ .user.CreatedAt | formatAsDate }}</span>
+            </div>
+            <button class="back"><a href="/">Back</a></button>
+        </fieldset>
+        <div id="status-message">
+            {{ or .statusMessage "" }}
+        </div>
+        <div id="secret">
+            <form method="POST" enctype="multipart/form-data">
+                <input class="picture" name="file" type="file">
+                <input class="submit-picture" type="submit">
+            </form>
+        </div>
+        <script src="static/profile.js"></script>
+    </body>
+</html>
+{{ end }}

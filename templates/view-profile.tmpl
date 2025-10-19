@@ -1,0 +1,24 @@
+{{ define "templates/view-profile.tmpl" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="static/profile.css">
+        <title>banter. - Profile</title>
+    </head>
+    <body>
+        <fieldset>
+            <legend>{{ .user.Username }}</legend>
+            <img src="{{ .user.ProfilePicture}}" alt="profile-picture">
+            <div class="posts">
+                Posts: {{ .postCount }}  
+            </div>
+            <div class="register-date">
+                Registered on: {{ .user.CreatedAt | formatAsDate }}
+            </div>
+        </fieldset>
+    </body>
+</html>
+{{ end }}
