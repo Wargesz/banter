@@ -2,6 +2,7 @@ package models
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type User struct {
@@ -10,4 +11,9 @@ type User struct {
     Password string
     ProfilePicture string
     Posts []Post
+}
+
+func (u *User) AfterDelete(tx *gorm.DB) (err error) {
+    tx.Clauses(clause.Returning{}).Where("user_id == ?", u.ID).Delete(&Post{})
+    return
 }
