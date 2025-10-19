@@ -76,7 +76,7 @@ a {
     text-decoration: none;
 }
 
-#error-message {
+#error-message, #status-message {
     position: absolute;
     top: 0;
     right: -100px;
