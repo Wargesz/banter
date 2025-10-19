@@ -73,17 +73,3 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
-
-brews:
-  - name: banter
-    repository:
-      owner: WARGESZ
-      name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TOKEN }}"
-    commit_author:
-      name: WARGESZ
-      email: WARGESZ@users.noreply.github.com
-    homepage: https://github.com/WARGESZ/banter
-    description: "banter: small forum webapp"
-    test: system "#{bin}/banter -v"
-    install: bin.install "banter"
