@@ -23,8 +23,9 @@ body {
 
 #profile-picture {
     height: 3em;
+    width: 3em;
     border-radius: 8em;
-    border: 0.1em solid #3DAC78;
+    border: 0.2em solid #3DAC78;
     margin: 0;
 }
 
@@ -55,39 +56,6 @@ body {
     margin-left: 2em;
 }
 
-#votes *, #votes {
-    display: inline;
-}
-
-#votes button {
-    margin: 0.4em;
-    padding: 0.4em;
-    border: thin solid #222324;
-    background-color: #222324;
-    color: #3DAC78;
-    border-radius: 0.4em;
-}
-
-button#upvote::before {
-    width: 0.2em;
-    height: 0.2em;
-}
-
-button#downvote::before {
-    width: 0.2em;
-    height: 0.2em;
-}
-
-#votes button:hover {
-    border: thin solid #3DAC78;
-    cursor: pointer;
-}
-
-#votes button#selected {
-    color: #222324;
-    background-color: #3DAC78;
-}
-
 #timestamp {
     float: right;
     margin: 0.3em;
@@ -97,10 +65,12 @@ button#downvote::before {
 img {
     margin-bottom: 1.5em;
     vertical-align: top;
+    background-color: #222324;
 }
 
 img#profile-picture:hover {
     cursor: pointer;
+    border: 0.2em solid white;
 }
 
 span {
@@ -117,28 +87,26 @@ div#new-post, div#edit-post {
     visibility: hidden;
 }
 
-#post-adder {
-    width: 100%
-}
-
 #post-adder * {
-    margin: 0;
-    padding: 0;
-    border: none;
     width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px;
-    border-radius: 15px;
-    color: #3DAC78;
-    background-color: #222324;
+    margin: 0 auto;
+    padding: 0 auto;
+    background: #222324;
+    border: thin solid #222324;
+    border-radius: 1em;
 }
 
-#post-add {
-    margin-left: auto;
-    margin-right: auto;
+#post-adder {
+    margin-bottom: 0.5em;
 }
 
-#post-add:hover {
+#post-add:hover img {
     cursor: pointer;
+    border: thin solid #3DAC78;
 }
 
 #new-post, #edit-post {

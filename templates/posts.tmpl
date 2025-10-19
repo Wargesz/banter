@@ -12,8 +12,9 @@
             {{ $u := .user }}
             {{ range $p := .posts }}
             <div id="post-container">
-                <img src="{{ $p.User.ProfilePicture }}" class="user-{{
-$p.User.Username  }}" alt="profile picture" id="profile-picture">
+                <img src="{{ $p.User.ProfilePicture }}" 
+                    class="user-{{$p.User.Username  }}" 
+                    alt="profile picture" id="profile-picture">
                 {{ if eq $p.UserID $u.ID }}
                     <button id="tool-buttons" class="delete id-{{ $p.ID }}">Delete</button>
                     <button id="tool-buttons" class="edit id-{{ $p.ID }}">Edit</button>
@@ -26,7 +27,7 @@ $p.User.Username  }}" alt="profile picture" id="profile-picture">
                         {{ $p.Content }}
                     </span>
                     <div id="timestamp">
-                        {{ $p.UpdatedAt | formatAsDate }}
+                        <b>{{ $p.User.Username }}</b> — {{ $p.UpdatedAt | formatAsDate }}
                     </div>
                 </div>
             </div>

@@ -13,11 +13,12 @@ function setup() {
 	} else {
 		document.querySelector('#new-post').hidden = true;
 		document.querySelector('#post-adder').hidden = false;
+		document.querySelector('#new-post-cancel').hidden = false;
 	}
 }
 
 document.querySelector('button#post-add').addEventListener('click', () => {
-	document.querySelector('#new-post-cancel').hidden = true;
+	document.querySelector('#new-post-cancel').hidden = false;
 	document.querySelector('div#new-post').hidden = false;
 	document.querySelector('div#new-post').style.visibility = 'visible';
 	document.querySelector('#new-post-title').focus();
@@ -63,7 +64,7 @@ function registerListeners() {
 			for (const a of attribs) {
 				if (a.startsWith('user-')) {
 					const username = a.split('-')[1];
-					globalThis.location.replace(`/profile?username=${username}`);
+					globalThis.location.href = `/profile?username=${username}`;
 				}
 			}
 		});
