@@ -1,8 +1,8 @@
 package initialisers
 
 import (
-	"gorm.io/gorm"
-    "gorm.io/driver/sqlite"
+    "gorm.io/gorm"
+    "github.com/glebarez/sqlite"
 )
 
 var DB *gorm.DB
