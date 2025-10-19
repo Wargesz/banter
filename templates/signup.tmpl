@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/style.css">
-        <title>Sign up</title>
+        <title>banter. - Sign up</title>
     </head>
     <body>
        <div class="login-container">
@@ -16,6 +16,9 @@
             <input type="text" id="username" name="username" placeholder="Username">
             <input type="password" id="password" name="password" placeholder="Password">
             <input type="submit" value="Sign up" id="submit">
+            <div id="signup-redirect">
+                or <a href="/login">log in</a>.
+            </div>
             </form>
             {{ if .errorMessage }}
             <div id="error-message">
