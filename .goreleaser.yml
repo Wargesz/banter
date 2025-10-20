@@ -62,6 +62,8 @@ archives:
     files:
       - LICENSE
       - README.md
+      - templates/*
+      - static/*
 
 checksum:
   name_template: "{{ .ProjectName }}_{{ .Version }}--checksums.txt"
