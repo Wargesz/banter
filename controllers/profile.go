@@ -49,13 +49,14 @@ func RemoveAccount(c *gin.Context) {
 	user, _ := c.Get("user")
 	var u models.User
 	initialisers.DB.First(&u, "id == ?", user.(models.User).ID)
-	result := initialisers.DB.Select(clause.Associations).Delete(&u)
 	if user.(models.User).ProfilePicture != "static/users/default.png" {
-		err := os.Remove("./" + user.(models.User).ProfilePicture)
+        path := "./" + user.(models.User).ProfilePicture
+		err := os.Remove(path)
 		if err != nil {
 			println("could not remove profile picture")
 		}
 	}
+	result := initialisers.DB.Select(clause.Associations).Delete(&u)
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"reason": "could not delete user",
