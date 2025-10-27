@@ -10,14 +10,15 @@
     </head>
     <body>
         <fieldset>
-            <legend>{{ .user.Username }}</legend>
+            <legend><b>{{ .user.Username }}</b></legend>
             <img src="{{ .user.ProfilePicture}}" alt="profile-picture">
             <div class="posts">
-                Posts: {{ .postCount }}  
+                Posts: <span>{{ .postCount }}</span>
             </div>
             <div class="register-date">
-                Registered on: {{ .user.CreatedAt | formatAsDate }}
+                Registered on: <span>{{ .user.CreatedAt | formatAsDate }}</span>
             </div>
+            <button class="back"><a href="/">Back</a></button>
         </fieldset>
     </body>
 </html>
