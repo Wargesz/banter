@@ -2,3 +2,4 @@
 banter.db
 *.swp
 dist/
+static/users/
