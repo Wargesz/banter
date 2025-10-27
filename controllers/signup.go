@@ -31,6 +31,14 @@ func SignUpUser(c *gin.Context) {
 		})
 		return
 	}
+	var user models.User
+	initialisers.DB.Unscoped().First(&user, "username = ?", username)
+	if user.ID != 0 {
+		c.HTML(http.StatusBadRequest, "templates/signup.tmpl", gin.H{
+			"errorMessage": "username taken",
+		})
+		return
+	}
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), 10)
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "templates/signup.tmpl", gin.H{
@@ -38,7 +46,7 @@ func SignUpUser(c *gin.Context) {
 		})
 		return
 	}
-	user := models.User{Username: username, Password: string(hash),
+	user = models.User{Username: username, Password: string(hash),
 		ProfilePicture: "static/users/default.png"}
 	result := initialisers.DB.Create(&user)
 	if result.Error != nil {
